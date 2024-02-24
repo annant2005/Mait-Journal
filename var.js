@@ -1,28 +1,28 @@
+let next = document.querySelector('.next')
+let prev = document.querySelector('.prev')
 
-let slideIndex = 1;
-showSlides(slideIndex);
+next.addEventListener('click', function(){
+    let items = document.querySelectorAll('.item')
+    document.querySelector('.slide').appendChild(items[0])
+})
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
+prev.addEventListener('click', function(){
+    let items = document.querySelectorAll('.item')
+    document.querySelector('.slide').prepend(items[items.length - 1]) // here the length of items = 6
+})
+const accordions=document.querySelectorAll('.accordion');
+accordions.forEach(accordion=>{
+    const icon=accordion.querySelector('.icon');
+    const answer=accordion.querySelector('.cont');
+    accordion.addEventListener('click',()=>{
+       if(icon.classList.contains('active')){
+        icon.classList.remove('active');
+        answer.style.maxHeight=null;
+       }
+       else{
+        icon.classList.add('active');
+        answer.style.maxHeight=answer.scrollHeight+'px';
+       }
 
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-}
-
+})
+})
